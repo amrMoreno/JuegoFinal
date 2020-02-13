@@ -17,4 +17,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i= new Intent(this,AndroidLauncher.class);
         this.startActivity(i);
     }
+
+    public void salir(View view) {
+
+    }
 }

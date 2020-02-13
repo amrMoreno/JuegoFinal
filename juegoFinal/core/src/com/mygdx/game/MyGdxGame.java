@@ -21,7 +21,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		float w = Gdx.graphics.getWidth(); //Obtenemos la anchura de nuestra pantalla
 		float h = Gdx.graphics.getHeight(); //Obtenemos la atura de nuestra pantalla
-		TiledMap map = new TmxMapLoader().load("Mapa/mapa.tmx"); //Cargamos el tilemap desde assets
+		TiledMap map = new TmxMapLoader().load("Mapa/mapaPlaya.tmx"); //Cargamos el tilemap desde assets
 		renderer = new OrthogonalTiledMapRenderer(map, unitScale); //Establecemos el renderizado del mapa dividido en Tiles de 16 dp.
 		camera = new OrthographicCamera(); //Declaramos la cámara a través de la que veremos el mundo
 		//camera.zoom=0.1f; //Establecemos el zoom de la cámara. 0.1 es más cercano que 1.
