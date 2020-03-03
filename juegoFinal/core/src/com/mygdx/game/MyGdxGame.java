@@ -81,7 +81,7 @@ this.debugRender= new Box2DDebugRenderer();
 		camera.position.x=WIDTH/2;
 		camera.position.y=HEIGHT/2;
 		//camera.zoom=1.001f;
-		personaje=new Personaje(camera,map);
+		personaje=new Personaje(camera,map,colisiones);
 		teclado=new Teclado(personaje,map);
 		Gdx.input.setInputProcessor(teclado);
 		camera.update();

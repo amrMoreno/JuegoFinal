@@ -34,10 +34,10 @@ public class Personaje extends Actor {
     private int alturaMapaPixels; //Altura del mapa donde nos movemos en pixels
     private int anchuraMapaTiles; //Anchura del mapa donde nos movemos en  tiles
     private int alturaMapaTiles; //Anchura del mapa donde nos movemos en tiles en tiles
-    private Intersector intersector;
+private Colisiones colisiones;
 
-    public Personaje (OrthographicCamera camara,TiledMap m){
-
+    public Personaje (OrthographicCamera camara,TiledMap m, Colisiones c){
+        colisiones=c;
        this.sprite=new Sprite(new Texture("Personajes/rock.png"));
         this.camara = camara;
         posicionTiles=this.camara.position;
@@ -100,10 +100,12 @@ ShapeRenderer shapeRenderer=new ShapeRenderer();
         switch (direccion){
             case 'u':
                 //Cambio posición del jugador, todavía no cambia nada visualmente
-                intersector.overlaps(sprite.getBoundingRectangle(),)
+
+                if (!colisiones.ComprobarMovimiento()){
+                    System.out.println(colisiones.ComprobarMovimiento());
                 if(posicionTiles.y<this.alturaMapaTiles-1) {
                     sprite.setPosition(sprite.getX(), sprite.getY()+60);
-                }
+                }}
                 //Pongo la cámara donde esté el jugador, para que siempre quede centrado en el tile en que está
                 //Recuerdo que el jugador no está de verdad en el tile: El dibujado
                 //del sprite es independiente del dibujado del mapa, y solo estamos
@@ -111,22 +113,28 @@ ShapeRenderer shapeRenderer=new ShapeRenderer();
                 //camara.position.y=posicionTiles.y;
                 break;
             case 'd':
+                if (!colisiones.ComprobarMovimiento()){
+                    System.out.println(colisiones.ComprobarMovimiento());
                 if(posicionTiles.y>0) {
                     sprite.setPosition(sprite.getX(), sprite.getY()-60);
-                }
+                }}
                 //camara.position.y=posicionTiles.y;
                 break;
             case 'l':
+                if (!colisiones.ComprobarMovimiento()){
+                    System.out.println(colisiones.ComprobarMovimiento());
                 if(posicionTiles.x>0) {
                     sprite.setPosition(sprite.getX()-80, sprite.getY());
-                }
+                }}
                 //camara.position.x=posicionTiles.x;
                 break;
             case 'r':
+                if (!colisiones.ComprobarMovimiento()){
+                    System.out.println(colisiones.ComprobarMovimiento());
                 if(posicionTiles.x<this.anchuraMapaTiles-1) {
                     sprite.setPosition(sprite.getX()+80, sprite.getY());
 
-                }
+                }}
                // camara.position.x=posicionTiles.x;
                 break;
         }
