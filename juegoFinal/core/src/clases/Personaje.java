@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -33,6 +34,7 @@ public class Personaje extends Actor {
     private int alturaMapaPixels; //Altura del mapa donde nos movemos en pixels
     private int anchuraMapaTiles; //Anchura del mapa donde nos movemos en  tiles
     private int alturaMapaTiles; //Anchura del mapa donde nos movemos en tiles en tiles
+    private Intersector intersector;
 
     public Personaje (OrthographicCamera camara,TiledMap m){
 
@@ -55,7 +57,9 @@ public class Personaje extends Actor {
                 new Vector3(camara.position.x,camara.position.y,0));
         sprite.setPosition(-100,-61);
     }
+
     public void dibujarHitboxPersonaje(){
+
 ShapeRenderer shapeRenderer=new ShapeRenderer();
         batch.begin();
         sprite.draw(batch);
@@ -96,6 +100,7 @@ ShapeRenderer shapeRenderer=new ShapeRenderer();
         switch (direccion){
             case 'u':
                 //Cambio posición del jugador, todavía no cambia nada visualmente
+                intersector.overlaps(sprite.getBoundingRectangle(),)
                 if(posicionTiles.y<this.alturaMapaTiles-1) {
                     sprite.setPosition(sprite.getX(), sprite.getY()+60);
                 }

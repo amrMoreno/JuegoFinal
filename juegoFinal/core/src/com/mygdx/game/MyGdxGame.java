@@ -57,8 +57,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch=new SpriteBatch();
 
 		map = new TmxMapLoader().load("Mapa/mapaPlaya.tmx"); //Cargamos el tilemap desde assets
-		Music sonidoFondo = Gdx.audio.newMusic(Gdx.files.internal("Sonidos/MusicaFondo.mp3"));
-		sonidoFondo.play();
+		//Music sonidoFondo = Gdx.audio.newMusic(Gdx.files.internal("Sonidos/MusicaFondo.mp3"));
+		//sonidoFondo.play();
 		stage=new Stage(new ScreenViewport());
 		//world=new World(new Vector2(0,-9.8f),true);
 		colisiones=new Colisiones();
@@ -95,6 +95,7 @@ this.debugRender= new Box2DDebugRenderer();
 			stage.addActor(colisiones.getActores()[b]);
 
 		}
+
 		stage.setDebugAll(true);
 
 	}

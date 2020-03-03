@@ -23,11 +23,11 @@ public class Colisiones {
         for (int i = 0;i < mons.getCount(); i++) {
             RectangleMapObject obj1 = (RectangleMapObject) mons.get(i);
             Rectangle rect1 = obj1.getRectangle();
-            rect[i]=new Rectangle(rect1.x*w,rect1.y*h,rect1.width*w,rect1.height*h);
+            rect[i]=new Rectangle(rect1.x*(w*2),rect1.y*(h*2),rect1.width*(w*2),rect1.height*(h*2));
             System.out.println("rec "+rect[i].x);
             actores[i]=new Actor();
             System.out.println(w);
-            actores[i].setBounds(rect1.x*w,rect1.y*h,rect1.width*w,rect1.height*h);
+            actores[i].setBounds(rect1.x*(w*1.9f),rect1.y*(h*1.9f),rect1.width*(w*1.9f),rect1.height*(h*1.9f));
         }
     }
 
