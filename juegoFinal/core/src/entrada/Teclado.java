@@ -13,46 +13,45 @@ import clases.Personaje;
 
 public class Teclado implements InputProcessor {
     Personaje actor;
-    private Vector3 posicionTiles;
-    private TiledMap mapa; //Necesito el mapa para poder redimensionar al jugador
-    private int anchuraMapaTiles; //Anchura del mapa donde nos movemos en  tiles
-    private int alturaMapaTiles; //Anchura del mapa donde nos movemos en tiles
 
 
     public Teclado(Personaje p, Map map){
+        super();
         this.actor=p;
-        this.mapa= (TiledMap) map;
-        anchuraMapaTiles = ((TiledMapTileLayer) mapa.getLayers().get(0)).getWidth(); //Obtenemos desde el mapa el número de tiles de ancho de la 1º Capa
-        alturaMapaTiles = ((TiledMapTileLayer) mapa.getLayers().get(0)).getHeight(); //Obtenemos desde el mapa el número de tiles de alto de la 1º Capa
+
 
     }
     @Override
     public boolean keyDown(int keycode) {
-        Gdx.app.log("eventoDown","Input "+keycode);
-        switch (keycode) {
-            case Input.Keys.LEFT:
-
-                break;
-
-            case Input.Keys.RIGHT:
-
+        switch (keycode){
+            case Input.Keys.UP:
+                actor.mover('u');
                 break;
             case Input.Keys.DOWN:
-                if(posicionTiles.y>0) {
-                    posicionTiles.y--;
+                actor.mover('d');
+                break;
+            case Input.Keys.LEFT:
+                actor.mover('l');
+                break;
+            case Input.Keys.RIGHT:
+                actor.mover('r');
+                break;
+            case Input.Keys.MINUS:
+                if(actor.getCamara().zoom<1) {
+                    actor.getCamara().zoom+=0.1;
+                    actor.getCamara().update();
                 }
                 break;
-
-            case Input.Keys.UP:
-//Cambio posición del jugador, todavía no cambia nada visualmente
-                if(posicionTiles.y<this.alturaMapaTiles-1) {
-                    posicionTiles.y++;
+            case Input.Keys.PLUS:
+                if(actor.getCamara().zoom>0.5) {
+                    actor.getCamara().zoom -= 0.1;
+                    actor.getCamara().update();
                 }
-
                 break;
         }
         return false;
     }
+
 
     @Override
     public boolean keyUp(int keycode) {

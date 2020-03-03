@@ -30,16 +30,18 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Batch batch;
 	private Teclado teclado;
 	private Box2DDebugRenderer debugRender;
+	 private TiledMap map;
 
 	@Override
 	public void create () {
 		batch=new SpriteBatch();
 		world=new World(new Vector2(0,-9.8f),true);
-		personaje=new Personaje(world);
+
 this.debugRender= new Box2DDebugRenderer();
 		float w = Gdx.graphics.getWidth(); //Obtenemos la anchura de nuestra pantalla
 		float h = Gdx.graphics.getHeight(); //Obtenemos la atura de nuestra pantalla
-		TiledMap map = new TmxMapLoader().load("Mapa/mapaPlaya.tmx"); //Cargamos el tilemap desde assets
+		 map = new TmxMapLoader().load("Mapa/mapaPlaya.tmx"); //Cargamos el tilemap desde assets
+
 		renderer = new OrthogonalTiledMapRenderer(map, unitScale); //Establecemos el renderizado del mapa dividido en Tiles de 16 dp.
 		camera = new OrthographicCamera(); //Declaramos la cámara a través de la que veremos el mundo
 		//camera.zoom=0.1f; //Establecemos el zoom de la cámara. 0.1 es más cercano que 1.
@@ -49,7 +51,9 @@ this.debugRender= new Box2DDebugRenderer();
 		camera.position.x=WIDTH/2;
 		camera.position.y=HEIGHT/2;
 		camera.zoom=1.001f;
+		personaje=new Personaje(camera,map);
 		teclado=new Teclado(personaje,map);
+
 		Gdx.input.setInputProcessor(teclado);
 
 		camera.update();
@@ -65,7 +69,7 @@ this.debugRender= new Box2DDebugRenderer();
 		renderer.render(); //Renderizamos la vista
 		batch.begin();
 
-		personaje.draw(batch,0);
+		personaje.draw();
 		batch.end();
 
 		camera.update();
