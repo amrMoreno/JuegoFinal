@@ -1,14 +1,17 @@
 package clases;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -38,7 +41,7 @@ public class Personaje extends Actor {
         posicionTiles=this.camara.position;
         batch=new SpriteBatch();
         this.mapa=m;
-        sprite.setScale(0.08f,0.08f);
+        sprite.setScale(0.09f,0.09f);
 
 
         anchuraMapaTiles = ((TiledMapTileLayer) mapa.getLayers().get(0)).getWidth(); //Obtenemos desde el mapa el número de tiles de ancho de la 1º Capa
@@ -50,14 +53,23 @@ public class Personaje extends Actor {
         //Como la cámara está centrada en el medio, voy a necesitar coger el tile de ahi
         Vector3 posPixels = camara.project(
                 new Vector3(camara.position.x,camara.position.y,0));
-        sprite.setPosition(-100,-55);
-
+        sprite.setPosition(-100,-61);
     }
-
+    public void dibujarHitboxPersonaje(){
+ShapeRenderer shapeRenderer=new ShapeRenderer();
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+       // shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(sprite.getBoundingRectangle().x,sprite.getBoundingRectangle().y,sprite.getBoundingRectangle().width,sprite.getBoundingRectangle().height);
+        shapeRenderer.end();
+    }
     public void draw() {
         ajustarACamara();
         batch.begin();
         sprite.draw(batch);
+        dibujarHitboxPersonaje();
         batch.end();
     }
 
@@ -85,7 +97,7 @@ public class Personaje extends Actor {
             case 'u':
                 //Cambio posición del jugador, todavía no cambia nada visualmente
                 if(posicionTiles.y<this.alturaMapaTiles-1) {
-                    posicionTiles.y=posicionTiles.y+2;
+                    sprite.setPosition(sprite.getX(), sprite.getY()+60);
                 }
                 //Pongo la cámara donde esté el jugador, para que siempre quede centrado en el tile en que está
                 //Recuerdo que el jugador no está de verdad en el tile: El dibujado
@@ -95,19 +107,20 @@ public class Personaje extends Actor {
                 break;
             case 'd':
                 if(posicionTiles.y>0) {
-                     posicionTiles.y=posicionTiles.y-2;
+                    sprite.setPosition(sprite.getX(), sprite.getY()-60);
                 }
                 //camara.position.y=posicionTiles.y;
                 break;
             case 'l':
                 if(posicionTiles.x>0) {
-                    posicionTiles.x=posicionTiles.x-2;
+                    sprite.setPosition(sprite.getX()-80, sprite.getY());
                 }
                 //camara.position.x=posicionTiles.x;
                 break;
             case 'r':
                 if(posicionTiles.x<this.anchuraMapaTiles-1) {
-                    posicionTiles.x=posicionTiles.x+2;
+                    sprite.setPosition(sprite.getX()+80, sprite.getY());
+
                 }
                // camara.position.x=posicionTiles.x;
                 break;
