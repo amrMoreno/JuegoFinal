@@ -141,6 +141,10 @@ ShapeRenderer shapeRenderer=new ShapeRenderer();
         camara.update();
     }
 
+    public Sprite getSprite() {
+        return sprite;
+    }
+
     public OrthographicCamera getCamara(){
         return camara;
     }

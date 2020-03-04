@@ -31,6 +31,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
+import Elemento.Enemigo1;
+import Elemento.Enemigos;
 import clases.Colisiones;
 import clases.Personaje;
 import entrada.Teclado;
@@ -51,7 +53,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	 private Colisiones colisiones;
 	 private float w;
 	 private float h;
-
+private  Enemigo1 enemigo1;
 	@Override
 	public void create () {
 		batch=new SpriteBatch();
@@ -66,8 +68,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 this.debugRender= new Box2DDebugRenderer();
-
-
 
 		renderer = new OrthogonalTiledMapRenderer(map, unitScale); //Establecemos el renderizado del mapa dividido en Tiles de 16 dp.
 
@@ -87,15 +87,19 @@ this.debugRender= new Box2DDebugRenderer();
 		camera.update();
 		WIDTH=WIDTH*16;
 		HEIGHT=HEIGHT*16;
+
+
 		 w = Gdx.graphics.getWidth()/WIDTH; //Obtenemos la anchura de nuestra pantalla
 		 h = Gdx.graphics.getHeight()/HEIGHT; //Obtenemos la atura de nuestra pantalla
 		System.out.println(w);
 		colisiones.checkCollision(map,personaje,w,h);
+
+
 		for(int b=0; b<colisiones.getActores().length;b++){
 			stage.addActor(colisiones.getActores()[b]);
 
 		}
-
+		 enemigo1=new Enemigo1("Personajes/31.png", 60, 60,120,560);
 		stage.setDebugAll(true);
 
 	}
@@ -112,9 +116,11 @@ this.debugRender= new Box2DDebugRenderer();
 		batch.begin();
 
 		personaje.dibujarHitboxPersonaje();
+		enemigo1.dibujarHitboxPersonaje();
 		batch.end();
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
+
 		camera.update();
 		//debugRender.render(map,camera.combined);
 

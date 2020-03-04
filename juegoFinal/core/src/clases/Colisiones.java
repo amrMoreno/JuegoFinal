@@ -18,8 +18,8 @@ public class Colisiones {
     public void checkCollision(TiledMap map, Personaje personaje, float w , float h) {
         jugador=new Rectangle();
 
-
-        jugador.set(personaje.getX(),personaje.getY(),personaje.getWidth(),personaje.getHeight());
+        System.out.println(personaje.getSprite().getHeight());
+        jugador.set(personaje.getSprite().getX(),personaje.getSprite().getY(),personaje.getSprite().getWidth(),personaje.getSprite().getHeight());
         MapObjects mons = map.getLayers().get("colision").getObjects();
         actores=new Actor[mons.getCount()];
         rect=new Rectangle[mons.getCount()];
@@ -45,8 +45,15 @@ public class Colisiones {
     }
 
     public boolean ComprobarMovimiento(){
+        boolean n= true;
+        for(int i =0;i<rect.length;i++){
 
-        return  intersector.overlaps(jugador,rect1);
+    if(rect[i].overlaps(jugador)){
+        n=true;
+    }else{
+        n= false;
     }
-
+    }
+        return n;
+}
 }
