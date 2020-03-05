@@ -43,7 +43,7 @@ private Colisiones colisiones;
         posicionTiles=this.camara.position;
         batch=new SpriteBatch();
         this.mapa=m;
-        sprite.setScale(0.09f,0.09f);
+        sprite.setScale(0.14f,0.14f);
 
 
         anchuraMapaTiles = ((TiledMapTileLayer) mapa.getLayers().get(0)).getWidth(); //Obtenemos desde el mapa el número de tiles de ancho de la 1º Capa
@@ -55,7 +55,7 @@ private Colisiones colisiones;
         //Como la cámara está centrada en el medio, voy a necesitar coger el tile de ahi
         Vector3 posPixels = camara.project(
                 new Vector3(camara.position.x,camara.position.y,0));
-        sprite.setPosition(-100,-61);
+        sprite.setPosition(-90,-50);
     }
 
     public void dibujarHitboxPersonaje(){
@@ -103,6 +103,9 @@ ShapeRenderer shapeRenderer=new ShapeRenderer();
 
                 if (!colisiones.ComprobarMovimiento()){
                     System.out.println(colisiones.ComprobarMovimiento());
+                    System.out.println(colisiones.collidesWith(sprite.getBoundingRectangle()));
+
+
                 if(posicionTiles.y<this.alturaMapaTiles-1) {
                     sprite.setPosition(sprite.getX(), sprite.getY()+60);
                 }}

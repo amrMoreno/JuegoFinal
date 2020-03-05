@@ -8,17 +8,19 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 
+import bd.BaseDeDatos;
 import clases.Personaje;
 
 
 public class Teclado implements InputProcessor {
     Personaje actor;
+    BaseDeDatos bd;
 
 
-    public Teclado(Personaje p, Map map){
+    public Teclado(Personaje p, Map map,BaseDeDatos bd){
         super();
         this.actor=p;
-
+        this.bd=bd;
 
     }
     @Override
@@ -26,15 +28,19 @@ public class Teclado implements InputProcessor {
         switch (keycode){
             case Input.Keys.UP:
                 actor.mover('u');
+                bd.guardar(bd.cargar()+1);
                 break;
             case Input.Keys.DOWN:
                 actor.mover('d');
+                bd.guardar(bd.cargar()+1);
                 break;
             case Input.Keys.LEFT:
                 actor.mover('l');
+                bd.guardar(bd.cargar()+1);
                 break;
             case Input.Keys.RIGHT:
                 actor.mover('r');
+                bd.guardar(bd.cargar()+1);
                 break;
             case Input.Keys.MINUS:
                 if(actor.getCamara().zoom<1) {

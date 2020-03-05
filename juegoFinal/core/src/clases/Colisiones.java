@@ -6,7 +6,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.mygdx.game.MyGdxGame;
 
 
 public class Colisiones {
@@ -34,6 +33,10 @@ public class Colisiones {
 
 
         }
+    }
+
+    public boolean collidesWith (Rectangle  rect) {
+        return rect1.x < rect.x + rect.width && rect1.y < rect.y + rect.height && rect1.x + rect1.width > rect.x && rect1.y + rect1.height > rect.y;
     }
 
     public Actor[] getActores() {
