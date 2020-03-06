@@ -140,6 +140,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         personaje.dibujarHitboxPersonaje();
         enemigo1.dibujarHitboxPersonaje();
+        enemigo1.moverseAutomatico(w,h);
         batch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

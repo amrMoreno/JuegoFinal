@@ -45,6 +45,14 @@ public class Enemigos extends Actor {
         batch.end();
 
     }
+    public void moverseAutomatico( float x ,float y){
+        int movimiento=-(int)x;
+        Thread n =new Thread();
+        if(movimiento!=-90){
+          this.sprite.translateX(movimiento);
+
+        }}
+
     public Rectangle getHitBox(){
         return sprite.getBoundingRectangle();
     }
