@@ -71,11 +71,26 @@ public class Teclado implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if(screenX>Gdx.graphics.getWidth()/2){
+            actor.mover('l');
+            bd.guardar(bd.cargar()+1);
+        }else{
+            actor.mover('r');
+            bd.guardar(bd.cargar()+1);}
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if(screenY<Gdx.graphics.getHeight()/2) {
+            actor.mover('d');
+            bd.guardar(bd.cargar()+1);
+
+        }else{
+            actor.mover('u');
+            bd.guardar(bd.cargar()+1);
+        }
+
         return false;
     }
 

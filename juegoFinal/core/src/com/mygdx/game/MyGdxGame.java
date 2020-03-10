@@ -123,7 +123,7 @@ public class MyGdxGame extends ApplicationAdapter {
             stage.addActor(colisiones.getActores()[b]);
 
         }
-        enemigo1 = new Enemigo1("Personajes/31.png", 60, 60, 120, 560);
+        enemigo1 = new Enemigo1("Personajes/31.png", 100, 100, 290, 700);
         stage.setDebugAll(true);
 
     }
@@ -145,7 +145,7 @@ public class MyGdxGame extends ApplicationAdapter {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
         batchTexto.begin();
-        textoGanar.draw(batchTexto, "Pasos "+baseDeDatos.cargar(), -150, 450, Gdx.graphics.getWidth(), 1, false);
+        textoGanar.draw(batchTexto, "Pasos "+baseDeDatos.cargar(), -200, 1000, Gdx.graphics.getWidth(), 1, false);
         batchTexto.end();
 
         camera.update();
